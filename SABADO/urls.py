@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('categoria_insumo/', include('categoria_insumo.urls')),
     path('medida/', include('medida.urls')),
+    path('insumo/', include('insumo.urls')),
 ]
 
 if settings.DEBUG:

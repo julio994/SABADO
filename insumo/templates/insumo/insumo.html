@@ -1,0 +1,24 @@
+<h2>Lista de Insumos</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Medida</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for insumo in insu %}
+        <tr>
+            <td>{{ insumo.nombre }}</td>
+            <td>{{ insumo.categoria_insumo }}</td>
+            <td>{{ insumo.medida }}</td>
+            <td>{{ insumo.stock }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'crear_insumo_page' %}" class="btn btn-primary mb-3">Crear Nueva Categoría</a>
+
