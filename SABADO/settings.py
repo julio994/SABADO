@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'categoria_insumo.apps.CategoriaInsumoConfig',
+    'medida.apps.MedidaConfig',
 ]
 
 MIDDLEWARE = [

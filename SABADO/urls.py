@@ -21,6 +21,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('categoria_insumo/', include('categoria_insumo.urls')),
+    path('medida/', include('medida.urls')),
 ]
 
 if settings.DEBUG:
