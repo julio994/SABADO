@@ -1,0 +1,7 @@
+<h2>Lista de Compras</h2>
+  <ul>
+    {% for compra in compras %}
+      <li>{{ compra.fecha }} - {{ compra.total }} <a href="{% url 'compra-detalle-create' compra.id %}">Agregar Detalles</a></li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'compra-create' %}">Nueva Compra</a>
