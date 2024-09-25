@@ -1,0 +1,24 @@
+
+<h2>Lista de Productos</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>descripcion</th>
+            <th>precio</th>
+         
+        </tr>
+    </thead>
+    <tbody>
+        {% for producto in product %}
+        <tr>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>{{ producto.precio }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'crear_producto' %}" class="btn btn-primary mb-3">Crear Nueva Categoría</a>
+

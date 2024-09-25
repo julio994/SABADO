@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'medida.apps.MedidaConfig',
     'insumo.apps.InsumoConfig',
     'compra.apps.CompraConfig',
+    'producto.apps.ProductoConfig',
    
 ]
 
