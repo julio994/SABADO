@@ -23,6 +23,7 @@ urlpatterns = [
     path('categoria_insumo/', include('categoria_insumo.urls')),
     path('medida/', include('medida.urls')),
     path('insumo/', include('insumo.urls')),
+    path('compra/', include('compra.urls')),
 ]
 
 if settings.DEBUG:

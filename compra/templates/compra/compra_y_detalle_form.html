@@ -1,0 +1,62 @@
+
+<!--
+<h2>Crear Compra con Detalles</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    
+    
+    <h3>Información de la Compra</h3>
+    {{ compra_form.as_p }}
+
+    >
+    <h3>Detalles de la Compra</h3>
+    {{ formset.management_form }}  
+    
+    {% for form in formset %}
+      <div class="formset-item">
+        {{ form.as_p }}  
+      </div>
+    {% endfor %}
+
+    
+    <button type="submit">Guardar Compra y Detalles</button>
+  </form>
+
+-->
+
+<!-- tu_template.html -->
+<form method="post">
+    {% csrf_token %}
+    {{ compra_form.as_p }}
+    
+    <div id="detalles-container">
+        {% for form in detalle_forms %}
+            <div class="detalle-form">
+                {{ form.as_p }}
+            </div>
+        {% endfor %}
+    </div>
+    
+    <button type="button" id="add-detalle">Agregar Detalle</button>
+    <button type="submit">Guardar Compra</button>
+</form>
+
+<script>
+document.getElementById('add-detalle').onclick = function() {
+    const container = document.getElementById('detalles-container');
+    const count = container.children.length;  // Contador de detalles existentes
+    const newForm = `
+        <div class="detalle-form">
+            <label for="id_insumo_${count}">insumo:</label>
+            <select name="insumo" id="id_insumo_${count}">
+                <!-- Opciones de productos aquí -->
+            </select>
+            <label for="id_cantidad_${count}">Cantidad:</label>
+            <input type="number" name="cantidad" id="id_cantidad_${count}" required>
+            <label for="id_precio_${count}">Precio:</label>
+            <input type="number" name="precio" id="id_precio_${count}" required>
+        </div>`;
+    container.insertAdjacentHTML('beforeend', newForm);
+};
+</script>

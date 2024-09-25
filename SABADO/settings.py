@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'categoria_insumo.apps.CategoriaInsumoConfig',
     'medida.apps.MedidaConfig',
     'insumo.apps.InsumoConfig',
+    'compra.apps.CompraConfig',
+   
 ]
 
 MIDDLEWARE = [
