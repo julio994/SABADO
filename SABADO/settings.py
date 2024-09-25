@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'insumo.apps.InsumoConfig',
     'compra.apps.CompraConfig',
     'producto.apps.ProductoConfig',
+    'categoria_producto.apps.CategoriaProductoConfig',
    
 ]
 

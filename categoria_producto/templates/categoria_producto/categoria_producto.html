@@ -1,0 +1,24 @@
+<h1>CATEGORIA</h1>
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripcion</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for categoriap in categop %}
+        <tr> 
+            <td>{{ categoriap.nombre }}</td>
+            <td>{{ categoriap.descripcion}}</td>
+            <td> 
+             
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{% url 'crear_categoria_producto' %}" class="btn btn-primary mb-3">Crear Nueva Categoría</a>
