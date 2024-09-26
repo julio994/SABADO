@@ -4,6 +4,7 @@
     <thead>
         <tr>
             <th>Nombre</th>
+            <th>categoria</th>
             <th>descripcion</th>
             <th>precio</th>
          
@@ -13,6 +14,7 @@
         {% for producto in product %}
         <tr>
             <td>{{ producto.nombre }}</td>
+            <td>{{ producto.categoria_producto }}</td>
             <td>{{ producto.descripcion }}</td>
             <td>{{ producto.precio }}</td>
         </tr>

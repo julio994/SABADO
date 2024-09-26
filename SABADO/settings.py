@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'compra.apps.CompraConfig',
     'producto.apps.ProductoConfig',
     'categoria_producto.apps.CategoriaProductoConfig',
-   
+    'receta.apps.RecetaConfig',
 ]
 
 MIDDLEWARE = [
@@ -130,8 +130,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,"static"),
-
+    os.path.join(BASE_DIR, "static"),
 ]
 
 

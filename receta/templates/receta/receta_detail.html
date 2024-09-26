@@ -1,0 +1,8 @@
+<h1>Detalles de la Receta: {{ receta.producto.nombre }}</h1>
+    <ul>
+        <li><strong>Producto:</strong> {{ receta.producto.nombre }}</li>
+        <li><strong>Insumo:</strong> {{ receta.insumo.nombre }}</li>
+        <li><strong>Cantidad:</strong> {{ receta.cantidad }} {{ receta.insumo.unidad_medida }}</li>
+    </ul>
+
+    <a href="{% url 'receta:receta_list' %}">Volver a la lista de recetas</a>

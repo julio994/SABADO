@@ -1,0 +1,24 @@
+<h1>Lista de Recetas</h1>
+<a href="{% url 'receta_create' %}">Crear nueva receta</a>
+<table>
+  <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Insumo</th>
+      <th>Cantidad</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for receta in recetas %}
+      <tr>
+        <td>{{ receta.producto.nombre }}</td>
+        <td>{{ receta.insumo.nombre }}</td>
+        <td>{{ receta.cantidad }} {{ receta.insumo.unidad_medida }}</td>
+        <td>
+          <a href="{% url 'receta_update' receta.pk %}">Editar</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
