@@ -2,8 +2,6 @@ from django.db import models
 from insumo.models import Insumo
 from producto.models import Producto
 
-
-
 class Receta(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='recetas')
     insumo = models.ForeignKey(Insumo, on_delete=models.CASCADE)

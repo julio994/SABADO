@@ -1,0 +1,28 @@
+<h2>Detalles de la Compra #{{ compra.id }}</h2>
+<p>Fecha: {{ compra.fecha }}</p>
+<p>Total: {{ compra.total }}</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Insumo</th>
+      <th>Medida</th>
+      <th>Cantidad</th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for detalle in detallecompras %}
+    <tr>
+      <td>{{ detalle.insumo }}</td>
+      <td>{{ detalle.medida }}</td>
+      <td>{{ detalle.cantidad }}</td>
+      <td>{{ detalle.valor }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div style="margin-top: 20px;">
+  <a href="{% url 'compra-list' %}" class="btn btn-primary">Volver a la lista de compras</a>
+</div>

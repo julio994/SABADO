@@ -1,6 +1,76 @@
-<h2>Crear Compra</h2>
-  <form method="post">
+<h2>Agregar Detalles a la Compra</h2>
+
+<form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-  </form>
+    {{ compra_form.as_p }}
+
+    <h3>Detalles de la Compra</h3>
+    {{ formset.management_form }}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Insumo</th>
+                <th>Medida</th>
+                <th>Cantidad</th>
+                <th>Valor</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for form in formset %}
+            <tr>
+                <td>{{ form.insumo }}</td>
+                <td>{{ form.medida }}</td>
+                <td>{{ form.cantidad }}</td>
+                <td>{{ form.valor }}</td>
+                <td>{{ form.DELETE }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="button" id="add-detalle">Agregar</button>
+    <button type="submit">Guardar Compra</button>
+</form>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Botón para agregar detalles
+    const addDetalleButton = document.getElementById('add-detalle');
+    const detallesTable = document.getElementById('detalles-table').getElementsByTagName('tbody')[0];
+    let formIndex = {{ formset.total_form_count }};  // Índice basado en la cantidad de formularios actuales
+
+    // Función para crear una nueva fila
+    addDetalleButton.addEventListener('click', function() {
+        const newForm = document.createElement('tr');
+        newForm.classList.add('detalle-form');
+
+        // Crear una nueva fila basada en la plantilla HTML
+        newForm.innerHTML = `
+            <td><input type="text" name="detalles-${formIndex}-insumo" id="id_detalles-${formIndex}-insumo"></td>
+            <td><input type="text" name="detalles-${formIndex}-medida" id="id_detalles-${formIndex}-medida"></td>
+            <td><input type="number" name="detalles-${formIndex}-cantidad" id="id_detalles-${formIndex}-cantidad"></td>
+            <td><input type="text" name="detalles-${formIndex}-valor" id="id_detalles-${formIndex}-valor"></td>
+            <td><input type="checkbox" name="detalles-${formIndex}-DELETE" id="id_detalles-${formIndex}-DELETE"> <button type="button" class="eliminar-detalle">Eliminar</button></td>
+        `;
+
+        // Agregar la nueva fila a la tabla
+        detallesTable.appendChild(newForm);
+
+        // Incrementar el índice para el siguiente formulario
+        formIndex++;
+        
+        // Actualizar el número total de formularios en el management_form
+        document.getElementById('id_detalles-TOTAL_FORMS').value = formIndex;  // Esto es clave para que Django maneje correctamente los formularios adicionales
+    });
+
+    // Eliminar la fila cuando se haga clic en el botón "Eliminar"
+    detallesTable.addEventListener('click', function(e) {
+        if (e.target && e.target.classList.contains('eliminar-detalle')) {
+            e.target.closest('tr').remove();
+        }
+    });
+});
+</script>

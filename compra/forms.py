@@ -12,10 +12,10 @@ class CompraDetalleForm(forms.ModelForm):
         model = CompraDetalle
         fields = ['insumo', 'medida', 'cantidad', 'valor']
 
-# Definimos un formset para CompraDetalle
+# Formset para manejar múltiples CompraDetalle
 CompraDetalleFormSet = inlineformset_factory(
-    Compra, CompraDetalle,  # Relación Compra -> CompraDetalle
-    form=CompraDetalleForm,
-    extra=1,  # Número de formularios adicionales por defecto
-    can_delete=True  # Permitir eliminar detalles de la compra
+    Compra, CompraDetalle, 
+    form=CompraDetalleForm, 
+    extra=10,  # Puedes ajustar el número de formularios extra a mostrar
+    can_delete=True  # Permite eliminar detalles si es necesario
 )

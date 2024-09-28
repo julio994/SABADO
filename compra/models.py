@@ -9,16 +9,20 @@ class Compra(models.Model):
     def __str__(self):
         return f'Compra {self.id} - {self.fecha}'
     
-    # Método para actualizar el total sumando los valores de los detalles asociados
-    def actualizar_total(self):
-        total_detalles = sum(detalle.valor * detalle.cantidad for detalle in self.detalles.all())
-        self.total = total_detalles
-        self.save()
+    def calcular_total(self):
+        # Sumar los valores de todos los detalles de esta compra
+        total = sum(detalle.valor for detalle in self.detalles.all())
+        return total
 
-        def save(self, *args, **kwargs):
-                self.actualizar_total()  # Llama a actualizar_total antes de guardar
-                super().save(*args, **kwargs)  # Llama al método save de la clase padre
-
+    def save(self, *args, **kwargs):
+        # Si es una instancia nueva (sin PK), guardar primero para asignar un ID
+        if self.pk is None:
+            super().save(*args, **kwargs)  # Guardar por primera vez
+        
+        # Calcular el total después de que se haya guardado la compra
+        self.total = self.calcular_total()
+        # Guardar nuevamente para actualizar el total
+        super().save(*args, **kwargs)
 class CompraDetalle(models.Model):
     compra = models.ForeignKey(Compra, related_name='detalles', on_delete=models.CASCADE)  # Relación uno a muchos con Compra
     insumo = models.ForeignKey(Insumo, on_delete=models.CASCADE)  # Relación uno a muchos con Insumo
@@ -29,7 +33,8 @@ class CompraDetalle(models.Model):
     def __str__(self):
         return f'{self.insumo.nombre} - {self.cantidad} '
 
-    # Sobrescribimos el método save para que, al guardar un detalle, actualice el total en la compra
     def save(self, *args, **kwargs):
-        super(CompraDetalle, self).save(*args, **kwargs)
-        self.compra.actualizar_total()  # Llamar a actualizar_total de Compra después de guardar un detalle
+        # Guardar el detalle de la compra normalmente
+        super().save(*args, **kwargs)
+        # Actualizar el total de la compra después de guardar un detalle
+        self.compra.save()
